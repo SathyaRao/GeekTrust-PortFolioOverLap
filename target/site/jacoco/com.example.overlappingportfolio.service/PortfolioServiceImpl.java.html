@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PortfolioServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">geektrust</a> &gt; <a href="index.source.html" class="el_package">com.example.overlappingportfolio.service</a> &gt; <span class="el_source">PortfolioServiceImpl.java</span></div><h1>PortfolioServiceImpl.java</h1><pre class="source lang-java linenums">package com.example.overlappingportfolio.service;
+
+import java.util.List;
+import java.util.Set;
+import com.example.overlappingportfolio.constants.Constants;
+import com.example.overlappingportfolio.model.Commands;
+import com.example.overlappingportfolio.model.PortfolioModel;
+import com.example.overlappingportfolio.model.Stocks;
+
+<span class="fc" id="L10">public class PortfolioServiceImpl implements PortfolioService {</span>
+<span class="fc" id="L11">	Commands commandList = new Commands();</span>
+<span class="fc" id="L12">	private Set&lt;String&gt; commands = commandList.getCommandsList();</span>
+<span class="fc" id="L13">	public PortfolioModel portfolio = new PortfolioModel();</span>
+<span class="fc" id="L14">	public Stocks stocksModel = new Stocks();</span>
+	
+	@Override
+	public void calculatePortfolio(String[] arguments){
+<span class="fc" id="L18">		String command = null;</span>
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">		for (int i = Constants.ZERO;i&lt;arguments.length;i++){</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">	    	if(arguments[i] != null){</span>
+<span class="fc" id="L21">				String[] commandsList = new String[arguments.length];</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">				if(commands.contains(arguments[i])){</span>
+<span class="fc" id="L23">					command = arguments[i];</span>
+				}
+<span class="fc" id="L25">				commandsList = commandList.getCommands(arguments,i);</span>
+<span class="fc" id="L26">				int commandCount = commandList.getCommandCount();</span>
+<span class="fc" id="L27">				i = i + commandCount;</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">				if(command != null){</span>
+<span class="fc" id="L29">					this.executeCommand(command,commandsList);</span>
+				}
+	    	} else { 
+				break;
+			}
+	    }
+<span class="fc" id="L35">	}</span>
+
+	@Override
+	public void executeCommand(String command, String[] commandList){
+<span class="fc bfc" id="L39" title="All 2 branches covered.">		if(command.equals(Constants.CURRENT_PORTFOLIO)){</span>
+<span class="fc" id="L40">			portfolio.setCurrentPortfolio(commandList);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        } else if(command.equals(Constants.CALCULATE_OVERLAP)){</span>
+<span class="fc" id="L42">        	this.calculateFundOverlap(commandList[Constants.ZERO]);</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">        } else if(command.equals(Constants.ADD_STOCK)){</span>
+<span class="fc" id="L44">        	String stockName = &quot;&quot;;</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        	for(int i=1;i&lt;commandList.length;i++){</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        		if(commandList[i] != null){</span>
+<span class="fc" id="L47">        			stockName += commandList[i] + &quot; &quot;;</span>
+        		} else 
+        		{
+        			break;
+        		}
+        	}
+<span class="fc" id="L53">        	stocksModel.addStock(commandList[Constants.ZERO], stockName);</span>
+        }
+<span class="fc" id="L55">	}</span>
+	
+	@Override
+	public List&lt;String&gt; calculateFundOverlap(String fundName) {
+<span class="fc" id="L59">		List&lt;String&gt; fundsInCurrentPortfolio = portfolio.getCurrentPortfolio();</span>
+<span class="fc" id="L60">		stocksModel.commonStocksCount(fundsInCurrentPortfolio, fundName);</span>
+<span class="fc" id="L61">		return null;</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

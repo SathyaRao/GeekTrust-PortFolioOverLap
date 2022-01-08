@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="14" failures="0" name="com.example.overlappingportfolio.AppTest" time="1.799" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="java.vm.version" value="17.0.1+12-LTS-39"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home/lib"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/srao/Projects/Java/GeekTrust-PortFolioOverLap-main"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="user.country" value="IN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/srao/Projects/Java/GeekTrust-PortFolioOverLap-main"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.runtime.version" value="17.0.1+12-LTS-39"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/gx/yc7cxb_n09v_k9j93h7dftm80000gn/T/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Applications/apache-maven-3.8.4/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/srao/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="maven.conf" value="/Applications/apache-maven-3.8.4/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="61.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="11.6"/>
+    <property name="library.jansi.path" value="/Applications/apache-maven-3.8.4/lib/jansi-native"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/srao"/>
+    <property name="user.timezone" value="Asia/Kolkata"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="17"/>
+    <property name="user.name" value="srao"/>
+    <property name="java.class.path" value="/Applications/apache-maven-3.8.4/boot/plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="17.0.1"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="sun.stderr.encoding" value="UTF-8"/>
+    <property name="maven.home" value="/Applications/apache-maven-3.8.4"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.version.date" value="2021-10-19"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.stdout.encoding" value="UTF-8"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+  </properties>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="compareCommonStocksTest" time="0.018"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="getCurrentPortfolioTest" time="0"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="getCommandsTest" time="0"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="setDataTest" time="1.399"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="calculatePortfolioTest" time="0.052"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="setStocksTest" time="0.069"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="setDataTest2" time="0.106"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="setDataTest3" time="0.097"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="setDataTest4" time="0.003"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="setCommandCountTest" time="0"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="setStocksTest1" time="0.011"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="executeCommandTest" time="0"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="calculatePortfolioTest2" time="0.03"/>
+  <testcase classname="com.example.overlappingportfolio.AppTest" name="calculatePortfolioTest3" time="0.014"/>
+</testsuite>

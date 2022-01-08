@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Stocks.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">geektrust</a> &gt; <a href="index.source.html" class="el_package">com.example.overlappingportfolio.model</a> &gt; <span class="el_source">Stocks.java</span></div><h1>Stocks.java</h1><pre class="source lang-java linenums">package com.example.overlappingportfolio.model;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+import com.example.overlappingportfolio.constants.Constants;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+<span class="fc" id="L15">public class Stocks {</span>
+<span class="fc" id="L16">	private static JSONObject stocks = new JSONObject();</span>
+
+    public JSONArray getStocks(String fundName){
+<span class="fc" id="L19">        Object[] stockNames = stocks.keySet().toArray();</span>
+<span class="fc" id="L20">        JSONArray arr = new JSONArray();</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        for(int i = Constants.ZERO;i&lt;stockNames.length;i++){</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            if(stockNames[i].equals(fundName)){</span>
+<span class="fc" id="L23">                arr = (JSONArray)stocks.get(fundName);</span>
+            }
+        }
+<span class="fc" id="L26">        return arr;</span>
+    }
+
+    public void setStocks(String filePath){
+        URL url;
+<span class="fc" id="L31">        StringBuilder sb = new StringBuilder();</span>
+        try {
+<span class="fc" id="L33">            url = new URL(filePath);</span>
+<span class="fc" id="L34">            URLConnection request = url.openConnection();</span>
+<span class="fc" id="L35">            request.connect();</span>
+<span class="fc" id="L36">            BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));</span>
+            String line;
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            while ((line = br.readLine()) != null) {</span>
+<span class="fc" id="L39">                sb.append(line + &quot;\n&quot;);</span>
+            }
+<span class="fc" id="L41">            br.close();</span>
+<span class="fc" id="L42">            JSONObject jsonObj = new JSONObject(sb.toString());</span>
+<span class="fc" id="L43">            JSONArray data = (JSONArray)jsonObj.get(&quot;funds&quot;);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            for(int i=Constants.ZERO;i&lt;data.length();i++){</span>
+<span class="fc" id="L45">                JSONObject obj = (JSONObject)data.get(i);</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">                if(obj != null){</span>
+<span class="fc" id="L47">                    stocks.put(obj.get(&quot;name&quot;).toString(),obj.get(&quot;stocks&quot;));</span>
+                }
+            }
+<span class="fc" id="L50">        } catch (MalformedURLException e) {</span>
+<span class="fc" id="L51">            e.printStackTrace();</span>
+<span class="nc" id="L52">        } catch (IOException e) {</span>
+<span class="nc" id="L53">            e.printStackTrace();</span>
+<span class="fc" id="L54">        }   </span>
+<span class="fc" id="L55">    }</span>
+
+    public JSONArray addStock(String fundName, String stockName) {
+<span class="fc" id="L58">        JSONArray arr = getStocks(fundName);</span>
+<span class="fc" id="L59">        arr.put(stockName);</span>
+<span class="fc" id="L60">        stocks.put(fundName,arr);</span>
+<span class="fc" id="L61">        return arr;</span>
+    }
+
+    public void commonStocksCount(List&lt;String&gt; fundsInCurrentPortfolio,String fundName){
+<span class="fc" id="L65">        JSONArray stocks = getStocks(fundName);</span>
+        JSONArray portfolioStocks;
+<span class="fc" id="L67">        float ratio = Constants.ZERO,sum = Constants.ZERO;</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        for(int i = Constants.ZERO;i&lt;fundsInCurrentPortfolio.size();i++){</span>
+<span class="fc" id="L69">            portfolioStocks = getStocks(fundsInCurrentPortfolio.get(i));</span>
+<span class="fc" id="L70">            ratio = compareCommonStocks(stocks,portfolioStocks);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">            if(ratio &gt; Constants.ZERO){</span>
+<span class="fc" id="L72">                System.out.println(fundName + &quot; &quot; + fundsInCurrentPortfolio.get(i) + &quot; &quot; + String.format(&quot;%.2f&quot;,ratio) + &quot;%&quot;);</span>
+            }
+<span class="fc" id="L74">            sum += ratio;</span>
+        }
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if(sum == Constants.ZERO){</span>
+<span class="fc" id="L77">            System.out.println(&quot;FUND_NOT_FOUND&quot;);</span>
+        }
+<span class="fc" id="L79">    }</span>
+
+    public float compareCommonStocks(JSONArray fundName,JSONArray portfolioStocks){
+<span class="fc" id="L82">        int count = Constants.ZERO, fundNameSize = fundName.length(), portfolioStocksSize = portfolioStocks.length();</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        for(int i=Constants.ZERO;i&lt;fundNameSize;i++){</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">            for(int j=Constants.ZERO;j&lt;portfolioStocksSize;j++){</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                if((fundName.get(i).toString().replaceAll(&quot; &quot;, &quot;&quot;)).equals(portfolioStocks.get(j).toString().replaceAll(&quot; &quot;, &quot;&quot;))){</span>
+<span class="fc" id="L86">                    count++;</span>
+<span class="fc" id="L87">                    break;</span>
+                }
+            }
+        }
+<span class="fc" id="L91">        float ratio = (float)(Constants.TWO*Constants.HUNDRED*(count))/(fundNameSize + portfolioStocksSize);</span>
+<span class="fc" id="L92">        return ratio;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

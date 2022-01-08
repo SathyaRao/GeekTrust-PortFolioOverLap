@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Commands.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">geektrust</a> &gt; <a href="index.source.html" class="el_package">com.example.overlappingportfolio.model</a> &gt; <span class="el_source">Commands.java</span></div><h1>Commands.java</h1><pre class="source lang-java linenums">package com.example.overlappingportfolio.model;
+
+import java.io.FileReader;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+import com.example.overlappingportfolio.constants.Constants;
+
+public class Commands {
+<span class="fc" id="L11">    private Set&lt;String&gt; commands = new HashSet&lt;String&gt;();</span>
+<span class="fc" id="L12">	private int commandCount = Constants.ZERO;</span>
+<span class="fc" id="L13">	private String[] arguments = new String[19];</span>
+
+<span class="fc" id="L15">    public Commands(){</span>
+<span class="fc" id="L16">        commands.add(Constants.CALCULATE_OVERLAP);</span>
+<span class="fc" id="L17">        commands.add(Constants.ADD_STOCK);</span>
+<span class="fc" id="L18">        commands.add(Constants.CURRENT_PORTFOLIO);</span>
+<span class="fc" id="L19">    }</span>
+
+    public Set&lt;String&gt; getCommandsList(){
+<span class="fc" id="L22">        return this.commands;</span>
+    }
+    public String[] getCommands(String[] arguments,int index){
+<span class="fc" id="L25">		String[] list = new String[arguments.length];</span>
+<span class="fc" id="L26">		int k = Constants.ZERO;</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">		for (int j = index+Constants.ONE;j&lt;arguments.length;j++){</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">    		if(arguments[j] == null){</span>
+<span class="fc" id="L29">        		break;</span>
+        	}
+<span class="fc bfc" id="L31" title="All 2 branches covered.">			if(!commands.contains(arguments[j])){</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        		if(arguments[j] != null){</span>
+<span class="fc" id="L33">        			list[k++] = arguments[j];</span>
+        		}
+        	} else {
+        		break;
+        	}
+    	}
+<span class="fc" id="L39">		setCommandCount(k);</span>
+<span class="fc" id="L40">		return list;</span>
+	}
+	
+	public void setCommandCount(int num){
+<span class="fc" id="L44">		this.commandCount = num;</span>
+<span class="fc" id="L45">	}</span>
+    public int getCommandCount(){
+<span class="fc" id="L47">		return this.commandCount;</span>
+	}
+
+    public void setCommands(FileReader filePath){
+<span class="fc" id="L51">		Scanner fileScanner = new Scanner(filePath);</span>
+<span class="fc" id="L52">		int commands = Constants.ZERO;</span>
+		
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		while(fileScanner.hasNext()){</span>
+<span class="fc" id="L55">			this.arguments[commands++] = fileScanner.next();</span>
+		}
+<span class="fc" id="L57">		fileScanner.close();</span>
+<span class="fc" id="L58">	}</span>
+	
+	public String[] getCommands(){
+<span class="fc" id="L61">		return this.arguments;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Geektrust.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">geektrust</a> &gt; <a href="index.source.html" class="el_package">com.example.overlappingportfolio</a> &gt; <span class="el_source">Geektrust.java</span></div><h1>Geektrust.java</h1><pre class="source lang-java linenums">package com.example.overlappingportfolio;
+import java.io.*;
+
+import com.example.overlappingportfolio.constants.Constants;
+import com.example.overlappingportfolio.model.Commands;
+import com.example.overlappingportfolio.model.Stocks;
+import com.example.overlappingportfolio.service.PortfolioServiceImpl;
+
+<span class="nc" id="L9">public class Geektrust </span>
+{
+	public static void main( String[] args ) throws Exception
+    {
+<span class="fc" id="L13">		Geektrust.setData(args);</span>
+		
+<span class="fc" id="L15">    }</span>
+	public static void setData(String[] args) throws Exception {
+<span class="fc" id="L17">		String filePath = Constants.DATA_URL;</span>
+<span class="fc" id="L18">		PortfolioServiceImpl serviceImpl = new PortfolioServiceImpl();</span>
+<span class="fc" id="L19">		String commandFile = args[Constants.ZERO];</span>
+<span class="fc" id="L20">		FileReader file = new FileReader(commandFile);</span>
+<span class="fc" id="L21">		Commands commands = new Commands();</span>
+<span class="fc" id="L22">		Stocks stocks = new Stocks();</span>
+<span class="fc" id="L23">		commands.setCommands(file);</span>
+<span class="fc" id="L24">        stocks.setStocks(filePath);</span>
+<span class="fc" id="L25">        String[] arguments = commands.getCommands();</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (arguments.length &gt; Constants.ZERO)</span>
+        {
+<span class="fc" id="L28">        	serviceImpl.calculatePortfolio(arguments);</span>
+        }
+<span class="fc" id="L30">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
