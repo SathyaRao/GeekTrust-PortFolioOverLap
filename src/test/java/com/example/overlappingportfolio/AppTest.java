@@ -2,6 +2,7 @@ package com.example.overlappingportfolio;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -32,9 +33,11 @@ public class AppTest
 	int ONE =  Constants.ONE;
 	int TWO =  Constants.TWO;
 	int HUNDRED =  Constants.HUNDRED;
+	File file = new File("src/main/java/resources");
+	String absolutePath = file.getAbsolutePath();
+
 	@Test
     public void setStocksTest(){
-		
 		String filePath = "https://geektrust.s3.ap-southeast-1.amazonaws.com/portfolio-overlap/stock_data.json";
     	stocksModel.setStocks(filePath);
  
@@ -50,7 +53,7 @@ public class AppTest
     }
 	@Test
     public void calculatePortfolioTest(){
-		String commandFile = "/Users/srao/Projects/Java/GeekTrust-PortFolioOverLap-main/src/main/java/resources/commands.txt";
+		String commandFile = absolutePath + "/commands.txt";
 		FileReader file;
 		try {
 			file = new FileReader(commandFile);
@@ -67,7 +70,7 @@ public class AppTest
     }
 	@Test
     public void calculatePortfolioTest2(){
-		String commandFile = "/Users/srao/Projects/Java/GeekTrust-PortFolioOverLap-main/src/main/java/resources/commands2.txt";
+		String commandFile =  absolutePath + "/commands2.txt";
 		FileReader file;
 		try {
 			file = new FileReader(commandFile);
@@ -84,7 +87,7 @@ public class AppTest
     }
 	@Test
     public void calculatePortfolioTest3(){
-		String commandFile = "/Users/srao/Projects/Java/GeekTrust-PortFolioOverLap-main/src/main/java/resources/commands3.txt";
+		String commandFile =  absolutePath + "/commands3.txt";
 		
 		FileReader file;
 		try {
@@ -103,7 +106,7 @@ public class AppTest
 	@Test
     public void setDataTest(){
 		String[] args = new String[1];
-		args[Constants.ZERO] = "/Users/srao/Projects/Java/GeekTrust-PortFolioOverLap-main/src/main/java/resources/commands.txt";
+		args[Constants.ZERO] = absolutePath + "/commands.txt";
 		try {
 			Geektrust.main(args);
 		} catch (Exception e) {
@@ -114,7 +117,7 @@ public class AppTest
 	@Test
     public void setDataTest2(){
 		String[] args = new String[1];
-		args[Constants.ZERO] = "/Users/srao/Projects/Java/GeekTrust-PortFolioOverLap-main/src/main/java/resources/commands2.txt";
+		args[Constants.ZERO] =  absolutePath + "/commands2.txt";
 		try {
 			Geektrust.main(args);
 		} catch (Exception e) {
@@ -125,7 +128,7 @@ public class AppTest
 	@Test
     public void setDataTest3(){
 		String[] args = new String[1];
-		args[Constants.ZERO] = "/Users/srao/Projects/Java/GeekTrust-PortFolioOverLap-main/src/main/java/resources/commands3.txt";
+		args[Constants.ZERO] =  absolutePath + "/commands3.txt";
 		try {
 			Geektrust.main(args);
 		} catch (Exception e) {
